@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Guid>94c34cf2-6cf6-4f93-b4ed-2181701a3c05</Guid>
+    <Name>LW_OfficerPack_WOTC</Name>
+    <Description>Description of My XCOM 2 Mod.</Description>
+    <SteamPublishID>0</SteamPublishID>
+    <AssemblyName>LW_OfficerPack_WOTC</AssemblyName>
+    <RootNamespace>LW_OfficerPack_WOTC</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Config\XComAI.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEditor.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEngine.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGame.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameData.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComLW_OfficerPack.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComPromotionUIMod.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LWCommandRange.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LWOfficerPack_SoundFX.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_OfficerPack_ModShaderCache.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\TestParticle.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\UILibrary_LW_OfficerPack.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_WOTC.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\LW_OfficerPack.chn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\LW_OfficerPack.cht">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\LW_OfficerPack.deu">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\LW_OfficerPack.esn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\LW_OfficerPack.fra">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\LW_OfficerPack.ita">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\LW_OfficerPack.jpn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\LW_OfficerPack.kor">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\LW_OfficerPack.pol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\LW_OfficerPack.rus">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\XComGame.chn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\XComGame.cht">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\XComGame.deu">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\XComGame.esn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\XComGame.fra">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\XComGame.ita">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\XComGame.jpn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\XComGame.kor">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\XComGame.pol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\Translations\XComGame.rus">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\XComGame.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModPreview.jpg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe_DE.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe_ES.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe_FR.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe_IT.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe_JP.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe_KR.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe_PL.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe_RU.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe_SC.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe_TC.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\LWCommandRange_Actor.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\LWOfficerUtilities.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIAlert_LWOfficerTrainingComplete.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIArmory_LWOfficerPromotion.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIArmory_LWOfficerPromotionItem.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIFacilityStaffContainer_LWOTS.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIFacility_LWOfficerSlot.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIListItemString_SelfContained.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIPersonnel_ListItem_SquadSelect_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIPersonnel_LWOfficer.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIPersonnel_SquadSelect_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIScreenListener_Armory_MainMenu_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIScreenListener_FacilityUpgrade_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIScreenListener_Facility_Academy_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIScreenListener_PersonnelSquadSelect_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIScreenListener_SquadSelect_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIScreenListener_TacticalHUD_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UISquadSelect_ListItem_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UISquadSelect_UtilityItem_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIStrategyScreenListener_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UITacticalHUD_MouseControls_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2AbilityMultiTarget_LWOfficerCommandRange.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2AbilityToHitCalc_LWCommandRange.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2Ability_OfficerAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2Ability_OfficerAbilitySet_PassiveAuras.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2Ability_ToggleCommandRange.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2DownloadableContentInfo_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2Effect_Collector.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2Effect_CombinedArms.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2Effect_Defilade.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2Effect_FallBack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2Effect_FireDiscipline.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2Effect_FocusFire.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2Effect_LeadByExample.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2Effect_LeadByExample_old.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2Effect_LWOfficerCommandAura.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2Effect_Scavenger.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2StrategyElement_LW_OTS_OfficerStaffSlot.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\XComGameState_Effect_Collector.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\XComGameState_Effect_FocusFire.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\XComGameState_Effect_Scavenger.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\XComGameState_HeadquartersProjectTrainLWOfficer.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\XComGameState_Unit_LWOfficer.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\XComHQPresentationLayer_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Tuple\Classes\LWTuple.uc">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config" />
+    <Folder Include="Localization" />
+    <Folder Include="Localization\Translations" />
+    <Folder Include="Content" />
+    <Folder Include="Src" />
+    <Folder Include="Src\LW_OfficerPack_WOTC\Classes" />
+    <Folder Include="Src\LW_Tuple" />
+    <Folder Include="Src\LW_OfficerPack_WOTC" />
+    <Folder Include="Src\LW_Tuple\Classes" />
+  </ItemGroup>
+  <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
+</Project>
