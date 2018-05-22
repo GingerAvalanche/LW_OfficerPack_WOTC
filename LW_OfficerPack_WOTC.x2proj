@@ -162,9 +162,6 @@
     <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIArmory_LWOfficerPromotionItem.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIFacilityStaffContainer_LWOTS.uc">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIFacility_LWOfficerSlot.uc">
       <SubType>Content</SubType>
     </Content>
@@ -180,13 +177,7 @@
     <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIPersonnel_SquadSelect_LWOfficerPack.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIScreenListener_Armory_MainMenu_LWOfficerPack.uc">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIScreenListener_FacilityUpgrade_LWOfficerPack.uc">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIScreenListener_Facility_Academy_LWOfficerPack.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LW_OfficerPack_WOTC\Classes\UIScreenListener_PersonnelSquadSelect_LWOfficerPack.uc">
@@ -256,6 +247,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2Effect_Scavenger.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2EventListener_LWOfficer_ArmoryMainMenu.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LW_OfficerPack_WOTC\Classes\X2StrategyElement_LW_OTS_OfficerStaffSlot.uc">

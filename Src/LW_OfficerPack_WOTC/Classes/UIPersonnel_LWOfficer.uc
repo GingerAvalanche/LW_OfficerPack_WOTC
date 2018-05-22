@@ -51,24 +51,23 @@ simulated function UpdateData()
 					}
 				}
 			}
+		}
+		if( StatusMessage == none )
+		{
+			StatusMessage = Spawn(class'UIText', self).InitText(, "");
+			StatusMessage.SetWidth(m_kList.Width); 
+			StatusMessage.SetPosition(m_kList.X, m_kList.Y);
+		}
+	
+		if( m_arrSoldiers.length == 0 )
+		{
+			StatusMessage.SetHTMLText( EmptyListMessage );
+		}
+		else
+		{
+			StatusMessage.SetHTMLText("");
+		}
 	}
-	if( StatusMessage == none )
-	{
-		StatusMessage = Spawn(class'UIText', self).InitText(, "");
-		StatusMessage.SetWidth(m_kList.Width); 
-		StatusMessage.SetPosition(m_kList.X, m_kList.Y);
-	}
-
-	if( m_arrSoldiers.length == 0 )
-	{
-		StatusMessage.SetHTMLText( EmptyListMessage );
-	}
-	else
-	{
-		StatusMessage.SetHTMLText("");
-	}
-}
-
 } 
 
 defaultproperties

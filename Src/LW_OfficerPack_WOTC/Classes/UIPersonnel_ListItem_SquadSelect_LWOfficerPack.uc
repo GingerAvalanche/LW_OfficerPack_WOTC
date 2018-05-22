@@ -63,6 +63,13 @@ simulated function UpdateData()
 		UnitLoc = class'UIUtilities_Strategy'.static.GetPersonnelLocation(Unit);
 	else
 		UnitLoc = "";
+
+	if( BondIcon == none )
+	{
+		BondIcon = Spawn(class'UIBondIcon', self);
+		if( `ISCONTROLLERACTIVE ) 
+			BondIcon.bIsNavigable = false; 
+	}
 	
 	if( Unit.HasSoldierBond(BondmateRef, BondData) )
 	{

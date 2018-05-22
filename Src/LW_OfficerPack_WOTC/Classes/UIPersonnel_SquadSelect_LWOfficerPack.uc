@@ -11,30 +11,35 @@ class UIPersonnel_SquadSelect_LWOfficerPack extends UIPersonnel_SquadSelect;
 //override in order to add special condition preventing adding a second officer
 simulated function UpdateList()
 {
-	local int i;
+	local int i, MinRank, MaxRank;
 	local XComGameState_Unit Unit;
 	local GeneratedMissionData MissionData;
 	local UIPersonnel_ListItem UnitItem;
 	local bool bAllowWoundedSoldiers; // true if wounded soldiers are allowed to be deployed on this mission
+	local XComGameStateHistory History;
+	local XComGameState_MissionSite MissionState;
+	local bool bHasRankLimits;
 	
 	super(UIPersonnel).UpdateList();
 	
+	History = `XCOMHISTORY;
 	MissionData = HQState.GetGeneratedMissionData(HQState.MissionRef.ObjectID);
 	bAllowWoundedSoldiers = MissionData.Mission.AllowDeployWoundedUnits;
+	MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(HQState.MissionRef.ObjectID));
+	bHasRankLimits = MissionState.HasRankLimits(MinRank, MaxRank);
 
 	// loop through every soldier to make sure they're not already in the squad
 	for(i = 0; i < m_kList.itemCount; ++i)
 	{
 		UnitItem = UIPersonnel_ListItem(m_kList.GetItem(i));
-		Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitItem.UnitRef.ObjectID));	
+		Unit = XComGameState_Unit(History.GetGameStateForObjectID(UnitItem.UnitRef.ObjectID));	
 
-		if(HQState.IsUnitInSquad(UnitItem.UnitRef) 
-			|| (Unit.IsInjured() && !bAllowWoundedSoldiers && !Unit.IgnoresInjuries()) 
-			|| Unit.IsTraining() 
-			|| Unit.IsPsiTraining()
-			|| (class'LWOfficerUtilities'.static.IsOfficer(Unit) && class'LWOfficerUtilities'.static.HasOfficerInSquad() && !bAllowWoundedSoldiers))
+		if(HQState.IsUnitInSquad(UnitItem.UnitRef) || !Unit.CanGoOnMission(bAllowWoundedSoldiers) ||
+			(bHasRankLimits && (Unit.GetRank() < MinRank || Unit.GetRank() > MaxRank)) ||
+			(class'LWOfficerUtilities'.static.IsOfficer(Unit) && class'LWOfficerUtilities'.static.HasOfficerInSquad() && !bAllowWoundedSoldiers))
+		{
 			UnitItem.SetDisabled(true);
-
+		}
 	}
 }
 

@@ -55,7 +55,8 @@ simulated function OnClickStaffSlot(UIPanel kControl, int cmd)
 	case class'UIUtilities_Input'.const.FXS_L_MOUSE_RELEASE_OUTSIDE:
 		if(!StaffSlot.IsLocked())
 		{
-			StaffContainer.HideDropDown(self);
+			//StaffContainer.HideDropDown(self);
+			HideDropDown();
 		}
 		break;
 	case class'UIUtilities_Input'.const.FXS_L_MOUSE_IN:
@@ -68,8 +69,30 @@ simulated function OnClickStaffSlot(UIPanel kControl, int cmd)
 
 simulated function QueueDropDownDisplay()
 {
-	OnClickStaffSlot(none, class'UIUtilities_Input'.const.FXS_L_MOUSE_DOUBLE_UP);
-	//m_QueuedDropDown = true;
+	//OnClickStaffSlot(none, class'UIUtilities_Input'.const.FXS_L_MOUSE_DOUBLE_UP);
+	m_QueuedDropDown = true;
+}
+
+simulated function OnCommand(string cmd, string arg)
+{
+	local array<string> sizeData;
+	if (cmd == "RealizeDimensions")
+	{
+		sizeData = SplitString(arg, ",");
+		X = float(sizeData[0]);
+		Y = float(sizeData[1]);
+		Width = float(sizeData[2]);
+		Height = float(sizeData[3]);
+		bSizeRealized = true;
+
+		// update location of dropdown that might be attached to this Staff Slot
+		if(m_QueuedDropDown || (StaffContainer.m_kPersonnelDropDown != none && StaffContainer.m_kPersonnelDropDown.bIsVisible &&  StaffContainer.m_kPersonnelDropDown.SlotRef == StaffSlotRef))
+		{
+			//ShowDropDown();
+			OnClickStaffSlot(none, class'UIUtilities_Input'.const.FXS_L_MOUSE_DOUBLE_UP);
+			m_QueuedDropDown = false;
+		}
+	}
 }
 
 simulated function OnOfficerTrainSelected()

@@ -273,3 +273,8 @@ function VisualizeScavengerAutoLoot(XComGameState VisualizeGameState) // , out a
 
 	//OutVisualizationTracks.AddItem(BuildTrack);
 }
+
+DefaultProperties
+{
+    bTacticalTransient=true
+}

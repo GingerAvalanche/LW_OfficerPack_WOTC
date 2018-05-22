@@ -56,7 +56,7 @@ function RegisterForEvents()
 	EventManager.RegisterForEvent(ThisObj, 'OnSoldierListItemUpdate_End', AddOfficerIcon_PersonnelListItem); // hook to add officer icon to soldier list items in UIPersonnel
 	EventManager.RegisterForEvent(ThisObj, 'OnSoldierListItem_GetPersonnelStatus', CheckOfficerMissionStatus); // hook to override status for officers prevented from going on mission
 
-	EventManager.RegisterForEvent(ThisObj, 'OnArmoryMainMenuUpdate', AddArmoryMainMenuItem);
+	//EventManager.RegisterForEvent(ThisObj, 'OnArmoryMainMenuUpdate', AddArmoryMainMenuItem);
 
 	EventManager.RegisterForEvent(ThisObj, 'OnDismissSoldier', CleanUpComponentStateOnDismiss);
 }
@@ -87,7 +87,7 @@ function EventListenerReturn AddArmoryMainMenuItem(Object EventData, Object Even
 	// Leader Abilities: 
 	if (class'LWOfficerUtilities'.static.IsOfficer(Unit) || class'UIArmory_LWOfficerPromotion'.default.ALWAYSSHOW) 
 	{
-		LeaderAbilityButton = ArmoryMainMenu.Spawn(class'UIListItemString', List.ItemContainer).InitListItem(CAPS(class'UIScreenListener_Armory_MainMenu_LWOfficerPack'.default.strOfficerMenuOption));
+		LeaderAbilityButton = ArmoryMainMenu.Spawn(class'UIListItemString', List.ItemContainer).InitListItem(CAPS(class'X2EventListener_LWOfficer_ArmoryMainMenu'.default.strOfficerMenuOption));
 		LeaderAbilityButton.ButtonBG.OnClickedDelegate = OnOfficerButtonCallback;
 		if(NextOnSelectionChanged == none)
 		{
@@ -115,7 +115,7 @@ simulated function OnSelectionChanged(UIList ContainerList, int ItemIndex)
 {
 	if (ContainerList.GetItem(ItemIndex) == LeaderAbilityButton) 
 	{
-		ArmoryMainMenu.MC.ChildSetString("descriptionText", "htmlText", class'UIUtilities_Text'.static.AddFontInfo(class'UIScreenListener_Armory_MainMenu_LWOfficerPack'.default.OfficerListItemDescription, true));
+		ArmoryMainMenu.MC.ChildSetString("descriptionText", "htmlText", class'UIUtilities_Text'.static.AddFontInfo(class'X2EventListener_LWOfficer_ArmoryMainMenu'.default.OfficerListItemDescription, true));
 		return;
 	}
 	NextOnSelectionChanged(ContainerList, ItemIndex);

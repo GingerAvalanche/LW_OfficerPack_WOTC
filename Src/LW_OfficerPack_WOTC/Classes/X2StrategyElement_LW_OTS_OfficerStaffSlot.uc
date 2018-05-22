@@ -84,9 +84,23 @@ static function X2DataTemplate CreateOTS_OfficerTrainingUpgradeTemplate()
 
 static function OTS_LWOfficerTrainingUpgradeAdded(XComGameState NewGameState, XComGameState_FacilityUpgrade Upgrade, XComGameState_FacilityXCom Facility)
 {
-	//Facility.PowerOutput += Upgrade.GetMyTemplate().iPower; // These are specifically not added to OnUpgradeAdded_UnlockStaffSlot
-	//Facility.UpkeepCost += Upgrade.GetMyTemplate().UpkeepCost; // These are specifically not added to OnUpgradeAdded_UnlockStaffSlot
-	Facility.UnlockStaffSlot(NewGameState);
+	//Facility.PowerOutput += Upgrade.GetMyTemplate().iPower; // Generic OnUpgradeAdded does this before it calls the upgrade's OnUpgradeAddedFn (this function)
+	//Facility.UpkeepCost += Upgrade.GetMyTemplate().UpkeepCost; // ^^^
+	//Facility.UnlockStaffSlot(NewGameState); // Default Firaxis UnlockStaffSlot unlocks whatever is the first locked slot in a facility. Let's only unlock our slot.
+	
+	local XComGameState_StaffSlot StaffSlotState;
+	local int i;
+
+	for (i = 0; i < Facility.StaffSlots.Length; i++)
+	{
+		StaffSlotState = XComGameState_StaffSlot(`XCOMHISTORY.GetGameStateForObjectID(Facility.StaffSlots[i].ObjectID));
+		if (StaffSlotState.IsLocked() && StaffSlotState.GetMyTemplateName() == 'OTSOfficerSlot')
+		{
+			StaffSlotState = XComGameState_StaffSlot(NewGameState.ModifyStateObject(class'XComGameState_StaffSlot', Facility.StaffSlots[i].ObjectID));
+			StaffSlotState.UnlockSlot();
+			return;
+		}
+	}
 }
 
 static function bool IsGTSProjectActive(StateObjectReference FacilityRef)

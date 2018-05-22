@@ -173,7 +173,7 @@ function UITrainingComplete(StateObjectReference UnitRef)
 
 }
 
-simulated function TrainingCompleteCB(/*EUIAction*/ Name eAction, out /*UIAlert*/ DynamicPropertySet AlertData, optional bool bInstant = false) // eAction now of type Name, AlertData now of type DynamicPropertySet
+simulated function TrainingCompleteCB(/*EUIAction*/ Name eAction, out /*UIAlert*/ DynamicPropertySet AlertData, optional bool bInstants = false) // eAction now of type Name, AlertData now of type DynamicPropertySet
 {
 	//local XComGameState NewGameState; 
 	local XComHQPresentationLayer HQPres;
@@ -201,7 +201,7 @@ simulated function TrainingCompleteCB(/*EUIAction*/ Name eAction, out /*UIAlert*
 	}
 }
 
-simulated function GoToArmoryLWOfficerPromotion(StateObjectReference UnitRef, optional bool bInstant = false)
+simulated function GoToArmoryLWOfficerPromotion(StateObjectReference UnitRef, optional bool bInstantb = false)
 {
 	//local XComGameState_HeadquartersXCom XComHQ;
 	//local XComGameState_FacilityXCom ArmoryState;

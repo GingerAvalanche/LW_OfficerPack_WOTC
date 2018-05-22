@@ -148,3 +148,8 @@ function Collector_BuildVisualization(XComGameState VisualizeGameState) // , out
 	MessageAction.AddWorldMessage(class'X2Ability_OfficerAbilitySet'.default.strCollector_WorldMessage);
 	//OutVisualizationTracks.AddItem(BuildTrack);
 }
+
+DefaultProperties
+{
+    bTacticalTransient=true
+}

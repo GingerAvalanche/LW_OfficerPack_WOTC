@@ -105,3 +105,8 @@ simulated function EventListenerReturn FocusFireCheck(Object EventData, Object E
 
 	return ELR_NoInterrupt;
 }
+
+DefaultProperties
+{
+    bTacticalTransient=true
+}

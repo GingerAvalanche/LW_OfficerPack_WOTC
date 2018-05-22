@@ -33,7 +33,7 @@ static event OnPostTemplatesCreated()
 	{
 		//FacilityTemplate.StaffSlots.AddItem('OTSOfficerSlot'); // changed to StaffSlotDefinition
 		FacilityTemplate.StaffSlotDefs.AddItem(StaffSlot);
-		FacilityTemplate.StaffSlotsLocked = 1;
+		FacilityTemplate.StaffSlotsLocked += 1;
 		`log("LW OfficerPack: Added OTSOfficerSlot to facility template OfficerTrainingSchool");
 
 		FacilityTemplate.Upgrades.AddItem('OTS_LWOfficerTrainingUpgrade');
@@ -273,6 +273,8 @@ static function UpdateOTSFacility()
 	local XComGameStateHistory History;
 	local name TemplateName;
 	local XComGameState_FacilityXCom FacilityState, OTSState;
+	local StateObjectReference SlotRef;
+	local XComGameState_StaffSlot StaffSlotState;
 
 	`Log("LW OfficerPack : Searching for existing OTS Facility");
 	TemplateName = 'OfficerTrainingSchool';
@@ -292,49 +294,65 @@ static function UpdateOTSFacility()
 		return;
 	}
 
-	`Log("LW OfficerPack: Found existing OTS, Attempting to update StaffSlots");
-	if(OTSState.StaffSlots.Length == 1)
+	`Log("LW OfficerPack: Found existing OTS, Attempting to update StaffSlots");	
+	foreach OTSState.StaffSlots(SlotRef)
 	{
-		`log("LW OfficerPack: OTS had only single staff slot, attempting to update facility"); 
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Updating OTS Facility for LW_OfficerPack");
-		CreateStaffSlots(OTSState, NewGameState);
-		NewGameState.AddStateObject(OTSState);
-		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+		StaffSlotState = XComGameState_StaffSlot(`XCOMHISTORY.GetGameStateForObjectID(SlotRef.ObjectID));
+		
+		if(StaffSlotState.GetMyTemplateName() == 'OTSOfficerSlot')
+		{
+			`log("LW OfficerPack: OTS already has Officer staff slot, canceling operation");
+			return;
+		}
 	}
+	
+	`log("LW OfficerPack: OTS does not have Officer staff slot, attempting to update facility");
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Updating OTS Facility for LW_OfficerPack");
+	CreateOTSStaffSlot(OTSState, NewGameState);
+	NewGameState.AddStateObject(OTSState);
+	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 }
 
 
 //---------------------------------------------------------------------------------------
-static function CreateStaffSlots(XComGameState_FacilityXCom FacilityState, XComGameState NewGameState)
+static function CreateOTSStaffSlot(XComGameState_FacilityXCom FacilityState, XComGameState NewGameState)
 {
-	local X2FacilityTemplate FacilityTemplate;
 	local X2StaffSlotTemplate StaffSlotTemplate;
 	local XComGameState_StaffSlot StaffSlotState;
-	local int i, LockThreshold;
+	local X2FacilityUpgradeTemplate UpgradeTemplate;
+	local XComGameState_FacilityUpgrade UpgradeState;
+	local int i;
 	
-	FacilityTemplate = FacilityState.GetMyTemplate();
-
-	//LockThreshold = FacilityTemplate.StaffSlots.Length - FacilityTemplate.StaffSlotsLocked; // Template's StaffSlots became StaffSlotDefs
-	LockThreshold = FacilityTemplate.StaffSlotDefs.Length - FacilityTemplate.StaffSlotsLocked;
+	StaffSlotTemplate = X2StaffSlotTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('OTSOfficerSlot'));
+	UpgradeTemplate = X2FacilityUpgradeTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('OTS_LWOfficerTrainingUpgrade'));
 	
-	//for (i = FacilityState.StaffSlots.Length ; i < FacilityTemplate.StaffSlots.Length; i++) // Template's StaffSlots became StaffSlotDefs
-	for (i = FacilityState.StaffSlots.Length ; i < FacilityTemplate.StaffSlotDefs.Length; i++)
+	if(StaffSlotTemplate == none || UpgradeTemplate == none)
 	{
-		//StaffSlotTemplate = X2StaffSlotTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate(FacilityTemplate.StaffSlots[i]));
-		StaffSlotTemplate = X2StaffSlotTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate(FacilityTemplate.StaffSlotDefs[i].StaffSlotTemplateName));
+		`log("LW OfficerPack: OTS Officer Slot template or OTS Officer facility upgrade does not exist!");
+		return;
+	}
+	
+	StaffSlotState = StaffSlotTemplate.CreateInstanceFromTemplate(NewGameState);
+	StaffSlotState.Facility = FacilityState.GetReference(); //make sure the staff slot knows what facility it is in
+	StaffSlotState.LockSlot(); // First off, assume it should be locked because under almost all circumstances the facility upgrade cannot be complete at this time
 
-		if (StaffSlotTemplate != none)
+	// Unlock the slot if you somehow have the OTS Officer upgrade already (aka had the mod conflict that resulted in this rewrite in the first place)
+	for(i = 0; i < FacilityState.Upgrades.Length; i++)
+	{
+		UpgradeState = XComGameState_FacilityUpgrade(`XCOMHISTORY.GetGameStateForObjectID(FacilityState.Upgrades[i].ObjectID));
+	
+		if(UpgradeState != none)
 		{
-			StaffSlotState = StaffSlotTemplate.CreateInstanceFromTemplate(NewGameState);
-			StaffSlotState.Facility = FacilityState.GetReference(); //make sure the staff slot knows what facility it is in
-			if (i >= LockThreshold)
+			if(UpgradeState.GetMyTemplateName() == UpgradeTemplate.DataName) // UpgradeState is "this" upgrade we're checking, UpgradeTemplate is the OTS Officer upgrade
 			{
-				StaffSlotState.LockSlot();
+				`log("LW OfficerPack: Officer facility upgrade already part of GTS, unlocking slot");
+				StaffSlotState.UnlockSlot();
+				break;
 			}
-			
-			NewGameState.AddStateObject(StaffSlotState);
-
-			FacilityState.StaffSlots.AddItem(StaffSlotState.GetReference());
 		}
 	}
+	
+	NewGameState.AddStateObject(StaffSlotState);
+
+	FacilityState.StaffSlots.AddItem(StaffSlotState.GetReference());
 }
